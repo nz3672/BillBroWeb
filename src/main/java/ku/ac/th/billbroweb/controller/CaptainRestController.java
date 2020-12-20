@@ -10,11 +10,11 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/register-captain")
-public class RegisterCaptainRestController {
+@RequestMapping("/api/captain")
+public class CaptainRestController {
     private CaptainService captainService;
 
-    public RegisterCaptainRestController(CaptainService captainService) {
+    public CaptainRestController(CaptainService captainService) {
         this.captainService = captainService;
     }
 
