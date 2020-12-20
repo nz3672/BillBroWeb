@@ -31,16 +31,16 @@ public class CaptainService {
         return repository.findAll();
     }
 
-    public  Captain findCaptain(int id) {
+    public  Captain findCaptain(String username) {
         try {
-            return repository.findById(id).get();
+            return repository.findBycUsername(username).get(0);
         } catch (NoSuchElementException e ){
             return null;
         }
     }
 
     public Captain checkPin(Captain inputCaptain){
-        Captain storedCaptain = findCaptain(inputCaptain.getC_id());
+        Captain storedCaptain = findCaptain(inputCaptain.getcUsername());
         if (storedCaptain != null) {
             String storedPin = storedCaptain.getC_pwd();
             if (BCrypt.checkpw(inputCaptain.getC_pwd(), storedPin)){

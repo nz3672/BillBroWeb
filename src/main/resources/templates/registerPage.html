@@ -1,16 +1,10 @@
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <!------ Include the above in your HEAD tag ---------->
 
 <!DOCTYPE html>
 <html xmlns:layout="http://www.w3.org/1999/xhtml"
-      layout:decorate="~{fragments/main_layout}"
       xmlns:th="https://www.thymeleaf.org">
-
-<video autoplay muted loop id="myVideo">
-    <source src="/bg-vid.mp4" type="video/mp4">
-</video>
 
 <head>
     <meta charset="UTF-8">
@@ -21,6 +15,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     <link th:rel="stylesheet" th:href="@{css/bootstrap.min.css}">
     <link th:rel="stylesheet" th:href="@{css/mystyle.css}">
+    <script th:src="@{js/bootstrap.min.js}"></script>
 </head>
 
 <div class="container">
@@ -35,15 +30,15 @@
                 </div>
             </div>
             <div class="card-body">
-                <form>
+                <form th:action="@{/register}" th:object="${captain}" method="POST">
 
                     <label class="remember"><b>Username</b></label>
                     <div class="input-group form-group">
-                        <input type="text" class="form-control" placeholder="username" name="username">
+                        <input type="text" class="form-control" th:field="*{cUsername}" placeholder="username">
                     </div>
                     <label class="remember"><b>Password</b></label>
                     <div class="input-group form-group">
-                        <input type="password" class="form-control" placeholder="password">
+                        <input type="password" class="form-control" th:field="*{c_pwd}" placeholder="password">
                     </div>
                     <label class="remember"><b>Confirm Password</b></label>
                     <div class="input-group form-group">
@@ -51,11 +46,11 @@
                     </div>
                     <label class="remember"><b>Email-Address</b></label>
                     <div class="input-group form-group">
-                        <input type="text" class="form-control" placeholder="email">
+                        <input type="text" class="form-control" th:field="*{c_email}" placeholder="email">
                     </div>
                     <label class="remember"><b>Name</b></label>
                     <div class="input-group form-group">
-                        <input type="text" class="form-control" placeholder="in-app name">
+                        <input type="text" class="form-control" th:field="*{c_name}" placeholder="in-app name">
                     </div>
                     <div class="form-group">
                         <input type="submit" value="Register" class="btn float-right login_btn">

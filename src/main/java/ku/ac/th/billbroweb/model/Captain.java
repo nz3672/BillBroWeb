@@ -9,7 +9,7 @@ public class Captain {
     @Id
     private int c_id;
 
-    private String c_username;
+    private String cUsername;
     private String c_pwd;
     private String c_name;
     private String c_email;
@@ -17,9 +17,16 @@ public class Captain {
     public Captain() {
     }
 
-    public Captain(int c_id, String c_username, String c_pwd, String c_name, String c_email) {
+    public Captain(int c_id, String cUsername, String c_pwd, String c_name, String c_email) {
         this.c_id = c_id;
-        this.c_username = c_username;
+        this.cUsername = cUsername;
+        this.c_pwd = c_pwd;
+        this.c_name = c_name;
+        this.c_email = c_email;
+    }
+
+    public Captain(String cUsername, String c_pwd, String c_name, String c_email) {
+        this.cUsername = cUsername;
         this.c_pwd = c_pwd;
         this.c_name = c_name;
         this.c_email = c_email;
@@ -29,8 +36,8 @@ public class Captain {
         return c_id;
     }
 
-    public String getC_username() {
-        return c_username;
+    public String getcUsername() {
+        return cUsername;
     }
 
     public String getC_pwd() {
@@ -43,6 +50,10 @@ public class Captain {
 
     public String getC_email() {
         return c_email;
+    }
+
+    public void setcUsername(String cUsername) {
+        this.cUsername = cUsername;
     }
 
     public void setC_pwd(String c_pwd) {
@@ -61,7 +72,7 @@ public class Captain {
     public String toString() {
         return "Captain{" +
                 "c_id=" + c_id +
-                ", c_username='" + c_username + '\'' +
+                ", cUsername='" + cUsername + '\'' +
                 ", c_pwd='" + c_pwd + '\'' +
                 ", c_name='" + c_name + '\'' +
                 ", c_email='" + c_email + '\'' +

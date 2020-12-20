@@ -1,5 +1,6 @@
 package ku.ac.th.billbroweb.controller;
 
+import ku.ac.th.billbroweb.data.CaptainRepository;
 import ku.ac.th.billbroweb.model.Captain;
 import ku.ac.th.billbroweb.service.CaptainService;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,7 +14,7 @@ import java.util.List;
 @RequestMapping("/api/captain")
 public class CaptainRestController {
     private CaptainService captainService;
-
+    
     public CaptainRestController(CaptainService captainService) {
         this.captainService = captainService;
     }
@@ -23,8 +24,13 @@ public class CaptainRestController {
         return captainService.getCaptain();
     }
 
-    @GetMapping("/{c_id}")
-    public Captain getOne(@PathVariable int c_id){
-        return captainService.findCaptain(c_id);
+    @GetMapping("/{c_username}")
+    public Captain getCaptainbyusername(@PathVariable String c_username){
+        return captainService.findCaptain(c_username);
     }
+
+//    @GetMapping("/{c_id}")
+//    public Captain getOne(@PathVariable int c_id){
+//        return captainService.findCaptain(c_id);
+//    }
 }

@@ -22,21 +22,22 @@ public class LoginController {
     }
 
     @GetMapping
-    public String getLoginPage(){
-        return "login";
+    public String getLoginPage(@ModelAttribute Captain captain){
+        return "loginPage";
     }
 
     @PostMapping
     public  String login(@ModelAttribute Captain captain, Model model){
         Captain matchingCap = captainService.checkPin(captain);
-
+        System.out.println(captain);
         if (matchingCap!=null){
             model.addAttribute("captainTitle",matchingCap.getC_id() + " " + matchingCap.getC_name());
             model.addAttribute("taskParty",taskPartyService.getCaptainOfTaskParty(captain.getC_id()));
             return "captainaccount";
         } else {
             model.addAttribute("noting","can't login");
-            return "login";
+            return "redirect:/login";
         }
     }
+
 }

@@ -24,19 +24,19 @@
                 </div>
             </div>
             <div class="card-body">
-                <form>
+                <form th:action="@{/login}" th:object="${captain}" method="POST">
                     <div class="input-group form-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-user"></i></span>
                         </div>
-                        <input type="text" class="form-control" placeholder="username" id="inputId">
+                        <input type="text" class="form-control" placeholder="username" th:field="*{cUsername}" id="inputc_username">
 
                     </div>
                     <div class="input-group form-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-key"></i></span>
                         </div>
-                        <input type="password" class="form-control" placeholder="password" id="inputPassword">
+                        <input type="password" class="form-control" placeholder="password" th:field="*{c_pwd}" id="inputc_pwd">
                     </div>
                     <div class="row align-items-center remember">
                         <input type="checkbox">Remember Me
