@@ -33,7 +33,7 @@ public class LoginController {
         if (matchingCap!=null){
             model.addAttribute("captainTitle",matchingCap.getC_id() + " " + matchingCap.getC_name());
             model.addAttribute("taskParty",taskPartyService.getCaptainOfTaskParty(captain.getC_id()));
-            return "captainaccount";
+            return "homePage";
         } else {
             model.addAttribute("noting","can't login");
             return "redirect:/login";

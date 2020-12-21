@@ -5,8 +5,9 @@ import org.springframework.stereotype.Repository;
 import ku.ac.th.billbroweb.model.Captain;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface CaptainRepository extends JpaRepository<Captain, Integer> {
-    List<Captain> findBycUsername(String c_username);
+    Optional<Captain> findBycUsername(String c_username);
 }

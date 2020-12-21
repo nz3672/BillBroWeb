@@ -14,7 +14,7 @@ import java.util.List;
 @RequestMapping("/api/captain")
 public class CaptainRestController {
     private CaptainService captainService;
-    
+
     public CaptainRestController(CaptainService captainService) {
         this.captainService = captainService;
     }

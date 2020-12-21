@@ -3,6 +3,9 @@ package ku.ac.th.billbroweb.service;
 import ku.ac.th.billbroweb.data.CaptainRepository;
 import ku.ac.th.billbroweb.model.Captain;
 import org.mindrot.jbcrypt.BCrypt;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -33,7 +36,7 @@ public class CaptainService {
 
     public  Captain findCaptain(String username) {
         try {
-            return repository.findBycUsername(username).get(0);
+            return repository.findBycUsername(username).get();
         } catch (NoSuchElementException e ){
             return null;
         }
@@ -49,4 +52,5 @@ public class CaptainService {
         }
         return null;
     }
+
 }
