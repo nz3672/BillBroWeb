@@ -15,7 +15,7 @@ import java.util.Collection;
 public class Captain {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int c_id;
 
     private String cUsername;

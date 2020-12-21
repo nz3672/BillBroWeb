@@ -3,11 +3,37 @@
       layout:decorate="~{fragments/main_layout}"
       xmlns:th="https://www.thymeleaf.org">
 
-<div class="container" layout:fragment="content">
-<!--    <div class="row">-->
-<!--        <div class="col-xs-3" th:each="task : ${taskParty}">-->
-<!--            <h4 th:text="${task}"></h4>-->
-<!--        </div>-->
-<!--    </div>-->
+<head>
+    <link th:rel="stylesheet" th:href="@{css/homepagestyle.css}">
+</head>
+
+<div class="wrapper" layout:fragment="content">
+    <div class="cards_wrap">
+        <div class="card_item" th:each="task : ${taskParty}">
+            <div class="card_inner">
+                <div class="card_top">
+
+                </div>
+                <div class="card_bottom">
+                    <div class="card_category">
+                        <p th:text="${task.t_name}"></p>
+                    </div>
+                    <div class="card_info">
+                        <p class="title" th:text="${task.t_res}">
+                            10 Best Things about Travel
+                        </p>
+                        <p th:text="${task.t_date}"></p>
+                        <p th:text="${task.t_price}"></p>
+                        <p th:text="${task.t_state}"></p>
+                    </div>
+                    <div class="card_creator">
+                        <a th:href="@{/task-party/edit/{id}(id=${task.t_id})}">Edit</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 </div>
 </html>

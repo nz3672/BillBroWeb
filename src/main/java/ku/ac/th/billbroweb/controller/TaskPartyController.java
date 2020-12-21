@@ -32,7 +32,7 @@ public class TaskPartyController {
     public String getEditTaskPartyPage(@PathVariable int id, Model model){
         TaskParty taskParty = taskPartyService.getTaskParty(id);
         model.addAttribute("task-party", taskParty);
-        return "task-party-edit";
+        return "editTask";
     }
 
     @PostMapping("/edit/{id}")

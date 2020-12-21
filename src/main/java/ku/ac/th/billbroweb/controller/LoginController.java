@@ -32,7 +32,7 @@ public class LoginController {
         System.out.println(captain);
         if (matchingCap!=null){
             model.addAttribute("captainTitle",matchingCap.getC_id() + " " + matchingCap.getC_name());
-            model.addAttribute("taskParty",taskPartyService.getCaptainOfTaskParty(captain.getC_id()));
+            model.addAttribute("taskParty",taskPartyService.getCaptainOfTaskParty(matchingCap.getC_id()));
             return "homePage";
         } else {
             model.addAttribute("noting","can't login");
