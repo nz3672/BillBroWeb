@@ -27,13 +27,14 @@
                         <p th:text="${task.t_state}"></p>
                     </div>
                     <div class="card_creator">
-                        <a th:href="@{/task-party/edit/{id}(id=${task.t_id})}">Edit</a>
+                        <a th:href="@{/task-party/edit/{id}(id=${task.tId})}">Edit</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
+    <a class="btn addTaskbtn" th:href="@{/newtask}"><i class="fas fa-plus"></i></a>
 
 </div>
 </html>
