@@ -31,7 +31,8 @@ public class TaskPartyController {
     @GetMapping("/edit/{id}")
     public String getEditTaskPartyPage(@PathVariable int id, Model model){
         TaskParty taskParty = taskPartyService.getTaskParty(id);
-        model.addAttribute("task-party", taskParty);
+        System.out.println(taskParty.toString());
+        model.addAttribute("taskparty", taskParty);
         return "editTask";
     }
 

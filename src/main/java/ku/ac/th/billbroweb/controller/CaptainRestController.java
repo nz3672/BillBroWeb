@@ -1,6 +1,5 @@
 package ku.ac.th.billbroweb.controller;
 
-import ku.ac.th.billbroweb.data.CaptainRepository;
 import ku.ac.th.billbroweb.model.Captain;
 import ku.ac.th.billbroweb.service.CaptainService;
 import org.springframework.web.bind.annotation.GetMapping;

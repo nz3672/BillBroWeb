@@ -29,7 +29,6 @@ public class LoginController {
     @PostMapping
     public  String login(@ModelAttribute Captain captain, Model model){
         Captain matchingCap = captainService.checkPin(captain);
-        System.out.println(captain);
         if (matchingCap!=null){
             model.addAttribute("captainTitle",matchingCap.getC_id() + " " + matchingCap.getC_name());
             model.addAttribute("taskParty",taskPartyService.getCaptainOfTaskParty(matchingCap.getC_id()));
