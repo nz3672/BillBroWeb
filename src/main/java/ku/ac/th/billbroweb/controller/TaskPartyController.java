@@ -2,9 +2,13 @@ package ku.ac.th.billbroweb.controller;
 
 import ku.ac.th.billbroweb.model.TaskParty;
 import ku.ac.th.billbroweb.service.TaskPartyService;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import javax.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/task-party")
@@ -29,18 +33,19 @@ public class TaskPartyController {
     }
 
     @GetMapping("/edit/{id}")
-    public String getEditTaskPartyPage(@PathVariable int id, Model model){
+    public String getEditTaskPartyPage(@PathVariable int id, Model model, HttpSession session){
         TaskParty taskParty = taskPartyService.getTaskParty(id);
-        System.out.println(taskParty.toString());
-        model.addAttribute("taskparty", taskParty);
-        return "editTask";
+        System.out.println(taskParty);
+        taskParty.settId(id);
+        session.setAttribute("taskparty", taskParty);
+        return "redirect:/editTask";
     }
 
     @PostMapping("/edit/{id}")
-    public String editTaskParty(@PathVariable int id, @ModelAttribute TaskParty taskParty, Model model){
+    public String editTaskParty(@PathVariable int id, @ModelAttribute TaskParty taskParty, Model model, RedirectAttributes redirectAttributes){
         taskPartyService.editTaskParty(taskParty);
-        model.addAttribute("task-partys", taskPartyService.getTaskParty());
-        return "redirect:/task-party";
+        redirectAttributes.addFlashAttribute("taskParty", taskParty);
+        return "redirect:/editcrewmate";
     }
 
     @PostMapping("/delete/{id}")

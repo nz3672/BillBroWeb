@@ -1,6 +1,6 @@
 package ku.ac.th.billbroweb.controller;
 
-import javafx.concurrent.Task;
+
 import ku.ac.th.billbroweb.model.Captain;
 import ku.ac.th.billbroweb.model.TaskParty;
 import ku.ac.th.billbroweb.service.CaptainService;
@@ -37,11 +37,8 @@ public class NewTaskController {
     public  String posttoAddTask(@RequestParam("famount") int a,@ModelAttribute TaskParty taskParty,Authentication authentication, RedirectAttributes redirectAttributes){
         redirectAttributes.addFlashAttribute("u", a);
         redirectAttributes.addFlashAttribute("captainobj", captainService.findCaptain(authentication.getName()));
-        taskParty.setC_id(captainService.findCaptain(authentication.getName()).getC_id());
+        taskParty.setcId(captainService.findCaptain(authentication.getName()).getC_id());
         redirectAttributes.addFlashAttribute("taskpartyobj", taskParty);
-        taskParty.setT_state("a");
-        System.out.println(taskParty);
-        taskPartyService.openTaskParty(taskParty);
         return "redirect:/addcrewmate";
     }
 }

@@ -7,11 +7,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-
 @JsonIgnoreProperties(ignoreUnknown = true)
+@Entity
 public class TaskParty {
-
-
+    @Id
+    @GeneratedValue(strategy  = GenerationType.IDENTITY)
     private int tId;
 
     private String t_name;
@@ -21,15 +21,15 @@ public class TaskParty {
     private String t_state;
     private int cId;
 
-    public int getC_id() {
+    public TaskParty() {
+    }
+
+    public int getcId() {
         return cId;
     }
 
-    public void setC_id(int cId) {
+    public void setcId(int cId) {
         this.cId = cId;
-    }
-
-    public TaskParty() {
     }
 
     public TaskParty(int tId, String t_name, String t_res, String t_date, Double t_price, String t_state, int cId) {
@@ -40,15 +40,6 @@ public class TaskParty {
         this.t_price = t_price;
         this.t_state = t_state;
         this.cId = cId;
-    }
-
-    public TaskParty(int tId, String t_name, String t_res, String t_date, Double t_price, String t_state) {
-        this.tId = tId;
-        this.t_name = t_name;
-        this.t_res = t_res;
-        this.t_date = t_date;
-        this.t_price = t_price;
-        this.t_state = t_state;
     }
 
     public void setT_name(String t_name) {
@@ -66,9 +57,12 @@ public class TaskParty {
     public void setT_price(Double t_price) {
         this.t_price = t_price;
     }
-
     public void setT_state(String t_state) {
         this.t_state = t_state;
+    }
+
+    public void settId(int tId) {
+        this.tId = tId;
     }
 
     public int gettId() {

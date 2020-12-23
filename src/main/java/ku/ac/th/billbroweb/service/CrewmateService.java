@@ -49,12 +49,12 @@ public class CrewmateService {
     }
 
     public void editCrewmate(Crewmate crewmate){
-        String url = "http://localhost:8091/api/crewmate/" + crewmate.getCm_id();
+        String url = "http://localhost:8091/api/crewmate/" + crewmate.getCmId();
         restTemplate.put(url,crewmate);
     }
 
     public void  deleteCrewmate(Crewmate crewmate){
-        String url = "http://localhost:8091/api/crewmate/" + crewmate.getCm_id();
+        String url = "http://localhost:8091/api/crewmate/" + crewmate.getCmId();
         restTemplate.delete(url, crewmate);
     }
 }

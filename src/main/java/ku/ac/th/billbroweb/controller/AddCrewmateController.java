@@ -36,6 +36,9 @@ public class AddCrewmateController {
 
     @GetMapping
     public String getAddTaskofCrewmate(Model model, @ModelAttribute CrewmateWrapper crewmateWrapper) {
+        if(model.asMap().isEmpty()) {
+            return "redirect:/home";
+        }
         this.taskParty = (TaskParty) model.asMap().get("taskpartyobj");
         this.friendnum = (int) model.asMap().get("u");
         ArrayList<CrewmateAdd> crewmateArrayList = new ArrayList<>();
@@ -45,7 +48,6 @@ public class AddCrewmateController {
 
         model.addAttribute("perPrice", Double.toString(taskParty.getT_price()/friendnum));
         model.addAttribute("crewmateWrapper", new CrewmateWrapper(crewmateArrayList));
-        System.out.println(taskParty.getC_id());
         return "AddTaskofCrewmate";
     }
 
@@ -53,12 +55,23 @@ public class AddCrewmateController {
     @PostMapping
     public String testing(@ModelAttribute CrewmateWrapper crewmateAdds, Model model) {
         taskParty.setT_state("กำลังดำเนินการ");
+        System.out.println(taskParty);
         taskPartyService.openTaskParty(taskParty);
-//        for (int i = 0 ; i < friendnum ; i++) {
-//            Crewmate crewmate = crewmates.getCrewmateAdds().get(i).getCrewmate();
-//            crewmate.settId(taskPartyService.getTaskParty());
-//            crewmateService.openCrewmate();
-//        }
-        return "test";
+        int taskiD = taskPartyService.getTaskParty().get(taskPartyService.getTaskParty().size()-1).gettId();
+        for (int i = 0 ; i < friendnum ; i++) {
+            Crewmate crewmate = crewmateAdds.getCrewmateAdds().get(i).getCrewmate();
+            crewmate.setCm_state("paying");
+            crewmate.settId(taskiD);
+            crewmateService.openCrewmate(crewmate);
+
+            int cmid = crewmateService.getCrewmate().get(crewmateService.getCrewmate().size()-1).getCmId();
+
+            HistoryPay historyPay = crewmateAdds.getCrewmateAdds().get(i).getHistoryPay();
+            historyPay.setCmId(cmid);
+
+            historyPayService.openHistoryPay(historyPay);
+
+        }
+        return "redirect:/home";
     }
 }

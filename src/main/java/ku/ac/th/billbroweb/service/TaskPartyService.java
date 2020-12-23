@@ -35,7 +35,6 @@ public class TaskPartyService {
 
     public void openTaskParty(TaskParty taskParty){
         String url = "http://localhost:8091/api/task-party";
-        System.out.println(taskParty);
         restTemplate.postForEntity(url, taskParty, TaskParty.class);
     }
 
