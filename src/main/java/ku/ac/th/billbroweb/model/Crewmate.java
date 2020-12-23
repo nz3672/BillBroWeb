@@ -3,10 +3,13 @@ package ku.ac.th.billbroweb.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Crewmate {
+
 
     private int cm_id;
 
@@ -14,6 +17,19 @@ public class Crewmate {
     private String cm_email;
     private Double cm_per_price;
     private String cm_state;
+    private int tId;
+
+    public void setCm_id(int cm_id) {
+        this.cm_id = cm_id;
+    }
+
+    public int gettId() {
+        return tId;
+    }
+
+    public void settId(int tId) {
+        this.tId = tId;
+    }
 
     public Crewmate() {
     }

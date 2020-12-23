@@ -33,7 +33,7 @@ public class TaskPartyController {
         TaskParty taskParty = taskPartyService.getTaskParty(id);
         System.out.println(taskParty.toString());
         model.addAttribute("taskparty", taskParty);
-        return "editPage";
+        return "editTask";
     }
 
     @PostMapping("/edit/{id}")

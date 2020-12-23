@@ -12,6 +12,15 @@ public class HistoryPay {
 
     private double hp_dept;
     private double hp_payed;
+    private int cm_id;
+
+    public int getCm_id() {
+        return cm_id;
+    }
+
+    public void setCm_id(int cm_id) {
+        this.cm_id = cm_id;
+    }
 
     public HistoryPay() {
     }
