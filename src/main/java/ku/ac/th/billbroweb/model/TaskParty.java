@@ -2,14 +2,12 @@ package ku.ac.th.billbroweb.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class TaskParty {
 
 
-    private int t_id;
+    private int tId;
 
     private String t_name;
     private String t_res;
@@ -21,8 +19,8 @@ public class TaskParty {
     public TaskParty() {
     }
 
-    public TaskParty(int t_id, String t_name, String t_res, String t_date, Double t_price, String t_pic, String t_state) {
-        this.t_id = t_id;
+    public TaskParty(int tId, String t_name, String t_res, String t_date, Double t_price, String t_pic, String t_state) {
+        this.tId = tId;
         this.t_name = t_name;
         this.t_res = t_res;
         this.t_date = t_date;
@@ -55,8 +53,8 @@ public class TaskParty {
         this.t_state = t_state;
     }
 
-    public int getT_id() {
-        return t_id;
+    public int gettId() {
+        return tId;
     }
 
     public String getT_name() {
@@ -86,7 +84,7 @@ public class TaskParty {
     @Override
     public String toString() {
         return "TaskParty{" +
-                "t_id=" + t_id +
+                "tId=" + tId +
                 ", t_name='" + t_name + '\'' +
                 ", t_res='" + t_res + '\'' +
                 ", t_date='" + t_date + '\'' +

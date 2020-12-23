@@ -47,12 +47,12 @@ public class TaskPartyService {
     }
 
     public void editTaskParty(TaskParty taskParty){
-        String url = "http://localhost:8091/api/task-party/" + taskParty.getT_id();
+        String url = "http://localhost:8091/api/task-party/" + taskParty.gettId();
         restTemplate.put(url,taskParty);
     }
 
     public void  deleteTaskParty(TaskParty taskParty){
-        String url = "http://localhost:8091/api/task-party/" + taskParty.getT_id();
+        String url = "http://localhost:8091/api/task-party/" + taskParty.gettId();
         restTemplate.delete(url, taskParty);
     }
 }

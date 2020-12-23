@@ -39,11 +39,12 @@ height: 370px;
 
 .addTaskbtn {
     position: fixed;
-    bottom: 25px;
-    right: 25px;
+    bottom: 50px;
+    right: 50px;
     border-radius: 50%;
     border: 1px solid red;
     display: block;
+    font-size: 64px;
 }
 
 .social_icon span{

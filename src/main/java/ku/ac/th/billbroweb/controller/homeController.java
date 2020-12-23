@@ -9,6 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class homeController {
     @GetMapping
     public String getLoginPage(){
-        return "homePage";
+        return "editPage";
     }
 }
