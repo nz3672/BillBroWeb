@@ -1,32 +1,40 @@
 package ku.ac.th.billbroweb.model;
 
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import java.util.Arrays;
-import java.util.Collection;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import java.time.Instant;
+
 
 @Entity
-public class Captain {
+public class Captain{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int c_id;
 
+    @NotBlank(message = "Username is require")
     private String cUsername;
+    @NotBlank(message = "Password is require")
     private String c_pwd;
+    @NotBlank(message = "Name is require")
     private String c_name;
+    @Email
+    @NotBlank(message = "Email is require")
     private String c_email;
+
+    private Instant created;
+    private boolean enable;
 
     public Captain() {
     }
 
-    public Captain(int c_id, String cUsername, String c_pwd, String c_name, String c_email) {
+    public Captain(int c_id, @NotBlank(message = "Username is require") String cUsername, @NotBlank(message = "Password is require") String c_pwd, @NotBlank(message = "Name is require") String c_name, @Email @NotBlank(message = "Email is require") String c_email) {
         this.c_id = c_id;
         this.cUsername = cUsername;
         this.c_pwd = c_pwd;
@@ -34,7 +42,7 @@ public class Captain {
         this.c_email = c_email;
     }
 
-    public Captain(String cUsername, String c_pwd, String c_name, String c_email) {
+    public Captain(@NotBlank(message = "Username is require") String cUsername, @NotBlank(message = "Password is require") String c_pwd, @NotBlank(message = "Name is require") String c_name, @Email @NotBlank(message = "Email is require") String c_email) {
         this.cUsername = cUsername;
         this.c_pwd = c_pwd;
         this.c_name = c_name;
@@ -75,6 +83,22 @@ public class Captain {
 
     public void setC_email(String c_email) {
         this.c_email = c_email;
+    }
+
+    public Instant getCreated() {
+        return created;
+    }
+
+    public boolean isEnable() {
+        return enable;
+    }
+
+    public void setCreated(Instant created) {
+        this.created = created;
+    }
+
+    public void setEnable(boolean enable) {
+        this.enable = enable;
     }
 
     @Override
