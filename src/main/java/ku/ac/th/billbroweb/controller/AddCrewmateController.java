@@ -3,6 +3,7 @@ package ku.ac.th.billbroweb.controller;
 
 import ku.ac.th.billbroweb.model.*;
 import ku.ac.th.billbroweb.service.CrewmateService;
+import ku.ac.th.billbroweb.service.EmailService;
 import ku.ac.th.billbroweb.service.HistoryPayService;
 import ku.ac.th.billbroweb.service.TaskPartyService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,9 @@ public class AddCrewmateController {
     @Autowired
     private TaskPartyService taskPartyService;
 
+    @Autowired
+    private EmailService emailService;
+
 
     @GetMapping
     public String getAddTaskofCrewmate(Model model, @ModelAttribute CrewmateWrapper crewmateWrapper) {
@@ -55,11 +59,11 @@ public class AddCrewmateController {
     @PostMapping
     public String testing(@ModelAttribute CrewmateWrapper crewmateAdds, Model model) {
         taskParty.setT_state("กำลังดำเนินการ");
-        System.out.println(taskParty);
         taskPartyService.openTaskParty(taskParty);
         int taskiD = taskPartyService.getTaskParty().get(taskPartyService.getTaskParty().size()-1).gettId();
         for (int i = 0 ; i < friendnum ; i++) {
             Crewmate crewmate = crewmateAdds.getCrewmateAdds().get(i).getCrewmate();
+
             crewmate.setCm_state("paying");
             crewmate.settId(taskiD);
             crewmateService.openCrewmate(crewmate);
@@ -70,7 +74,7 @@ public class AddCrewmateController {
             historyPay.setCmId(cmid);
 
             historyPayService.openHistoryPay(historyPay);
-
+            emailService.sent(taskParty,crewmate,historyPay);
         }
         return "redirect:/home";
     }

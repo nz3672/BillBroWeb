@@ -3,6 +3,7 @@ package ku.ac.th.billbroweb.controller;
 
 import ku.ac.th.billbroweb.model.*;
 import ku.ac.th.billbroweb.service.CrewmateService;
+import ku.ac.th.billbroweb.service.EmailService;
 import ku.ac.th.billbroweb.service.HistoryPayService;
 import ku.ac.th.billbroweb.service.TaskPartyService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +33,8 @@ public class EditCrewmateController {
     @Autowired
     private TaskPartyService taskPartyService;
 
+    @Autowired
+    private EmailService emailService;
 
     @GetMapping
     public String getEditTask(Model model, @ModelAttribute CrewmateWrapper crewmateWrapper) {
@@ -62,13 +65,20 @@ public class EditCrewmateController {
             } else {
                 crewmate.setCm_state("paying");
             }
-            crewmate.settId(taskiD);
+            String oldEmail = crewmate.getCm_email();
 
+            crewmate.settId(taskiD);
             crewmateService.editCrewmate(crewmate);
 
             historyPay.setCmId(crewmate.getCmId());
 
             historyPayService.editHistoryPay(historyPay);
+
+           // if (!oldEmail.equals(crewmate.getCm_email())){
+               // System.out.println(oldEmail);
+               // System.out.println(crewmate.getCm_email());
+                //emailService.sent(taskParty,crewmate,historyPay);
+            //}
         }
         return "redirect:/home";
     }
