@@ -45,7 +45,6 @@ public class EditCrewmateController {
             crewmateArrayList.add(new CrewmateAdd(crewmate,historyPayList.get(0)));
             System.out.println(historyPayList.get(0));
         }
-
         model.addAttribute("perPrice", crewmateArrayList.get(0).getCrewmate().getCm_per_price());
         model.addAttribute("crewmateWrapper", new CrewmateWrapper(crewmateArrayList));
         return "EditTaskOfCrewmate";
@@ -63,17 +62,13 @@ public class EditCrewmateController {
             } else {
                 crewmate.setCm_state("paying");
             }
-
             crewmate.settId(taskiD);
 
-            System.out.println(crewmate);
-            System.out.println(historyPay);
             crewmateService.editCrewmate(crewmate);
 
             historyPay.setCmId(crewmate.getCmId());
 
             historyPayService.editHistoryPay(historyPay);
-
         }
         return "redirect:/home";
     }
