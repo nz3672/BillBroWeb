@@ -20,35 +20,30 @@
 
 <div class="container">
     <div class="d-flex justify-content-center h-100">
-        <div class="card">
+        <div class="card" style="height: 500px;">
             <div class="card-header">
                 <h3>Sign Up</h3>
             </div>
             <div class="card-body">
                 <form th:action="@{/register}" th:object="${captain}" method="POST">
-
                     <label class="remember"><b>Username</b></label>
                     <div class="input-group form-group">
-                        <input type="text" class="form-control" th:field="*{cUsername}" placeholder="cUsername">
+                        <input type="text" class="form-control" th:field="*{cUsername}" id="cUsername">
                     </div>
                     <label class="remember"><b>Password</b></label>
                     <div class="input-group form-group">
-                        <input type="password" class="form-control" th:field="*{c_pwd}" placeholder="password">
-                    </div>
-                    <label class="remember"><b>Confirm Password</b></label>
-                    <div class="input-group form-group">
-                        <input type="password" class="form-control" placeholder="confirm-c_pwd">
+                        <input type="password" class="form-control" th:field="*{c_pwd}" id="password">
                     </div>
                     <label class="remember"><b>Email-Address</b></label>
                     <div class="input-group form-group">
-                        <input type="text" class="form-control" th:field="*{c_email}" placeholder="c_email">
+                        <input type="text" class="form-control" th:field="*{c_email}" id="c_email">
                     </div>
                     <label class="remember"><b>Name</b></label>
                     <div class="input-group form-group">
-                        <input type="text" class="form-control" th:field="*{c_name}" placeholder="in-app c_name">
+                        <input type="text" class="form-control" th:field="*{c_name}" id="in-app">
                     </div>
                     <div class="form-group">
-                        <input type="submit" value="Register" class="btn float-right login_btn">
+                        <input type="submit" value="Register" class="btn float-right login_btn" id="submitbtn">
                     </div>
                 </form>
             </div>

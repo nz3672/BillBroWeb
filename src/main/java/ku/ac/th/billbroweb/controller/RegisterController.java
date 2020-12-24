@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.time.Instant;
+
 @Controller
 @RequestMapping("/register")
 public class RegisterController {
@@ -25,6 +27,8 @@ public class RegisterController {
 
     @PostMapping
     public String postRegister(@ModelAttribute Captain captain){
+        captain.setCreated(Instant.now());
+        captain.setEnable(true);
         captainService.createCaptain(captain);
         return "redirect:/login";
     }
