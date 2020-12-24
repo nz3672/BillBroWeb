@@ -23,14 +23,14 @@ public class homeController {
     private TaskPartyService taskPartyService;
 
     @GetMapping
-    public String getLoginPage(Authentication authentication, Model model){
+    public String getHomePage(Authentication authentication, Model model){
         model.addAttribute("taskParty",taskPartyService.getCaptainOfTaskParty(captainService.findCaptain(authentication.getName()).getC_id()));
+        model.addAttribute("capName","Welcome ," + captainService.findCaptain(authentication.getName()).getC_name());
         return "homePage";
     }
 
     @PostMapping
     public String geteditPage(@ModelAttribute TaskParty taskParty) {
-        System.out.println(taskParty.gettId());
         return "test";
     }
 }

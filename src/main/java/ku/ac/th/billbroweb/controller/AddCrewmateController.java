@@ -2,12 +2,14 @@ package ku.ac.th.billbroweb.controller;
 
 
 import ku.ac.th.billbroweb.model.*;
+import ku.ac.th.billbroweb.service.CaptainService;
 import ku.ac.th.billbroweb.service.CrewmateService;
 import ku.ac.th.billbroweb.service.EmailService;
 import ku.ac.th.billbroweb.service.HistoryPayService;
 import ku.ac.th.billbroweb.service.TaskPartyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,6 +31,9 @@ public class AddCrewmateController {
     private CrewmateService crewmateService;
 
     @Autowired
+    private CaptainService captainService;
+
+    @Autowired
     private HistoryPayService historyPayService;
 
     @Autowired
@@ -39,7 +44,7 @@ public class AddCrewmateController {
 
 
     @GetMapping
-    public String getAddTaskofCrewmate(Model model, @ModelAttribute CrewmateWrapper crewmateWrapper) {
+    public String getAddTaskofCrewmate(Model model, Authentication authentication, @ModelAttribute CrewmateWrapper crewmateWrapper) {
         if(model.asMap().isEmpty()) {
             return "redirect:/home";
         }
@@ -47,11 +52,14 @@ public class AddCrewmateController {
         this.friendnum = (int) model.asMap().get("u");
         ArrayList<CrewmateAdd> crewmateArrayList = new ArrayList<>();
         for(int i = 0; i < friendnum; i++) {
-            crewmateArrayList.add(new CrewmateAdd(new Crewmate(), new HistoryPay()));
+            Crewmate crewmate = new Crewmate();
+            crewmate.setCm_per_price(taskParty.getT_price()/friendnum);
+            crewmateArrayList.add(new CrewmateAdd(crewmate, new HistoryPay()));
         }
 
         model.addAttribute("perPrice", Double.toString(taskParty.getT_price()/friendnum));
         model.addAttribute("crewmateWrapper", new CrewmateWrapper(crewmateArrayList));
+        model.addAttribute("capName","Welcome ," + captainService.findCaptain(authentication.getName()).getC_name());
         return "AddTaskofCrewmate";
     }
 
@@ -72,7 +80,7 @@ public class AddCrewmateController {
 
             HistoryPay historyPay = crewmateAdds.getCrewmateAdds().get(i).getHistoryPay();
             historyPay.setCmId(cmid);
-
+            historyPay.setHp_dept(crewmate.getCm_per_price() - historyPay.getHp_payed());
             historyPayService.openHistoryPay(historyPay);
             emailService.sent(taskParty,crewmate,historyPay);
         }

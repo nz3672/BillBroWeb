@@ -46,9 +46,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(HttpSecurity httpSecurity) throws  Exception{
+//        httpSecurity.csrf().disable().authorizeRequests()
+//                .antMatchers("/login").permitAll().anyRequest().authenticated()
+//                .antMatchers("/register").permitAll().anyRequest().authenticated()
+//                .and().formLogin().loginPage("/login").defaultSuccessUrl("/home");
         httpSecurity.csrf().disable().authorizeRequests()
-                .antMatchers("/login").permitAll().anyRequest().authenticated()
-                .and().formLogin().loginPage("/login").defaultSuccessUrl("/home");
+                .antMatchers("/register", "/css/**", "/js/**", "/img/**").permitAll().anyRequest().authenticated()
+                .and().formLogin().loginPage("/login")
+                .permitAll().defaultSuccessUrl("/home");
 
         httpSecurity.addFilterBefore(jwtAuthenticationFilter(),UsernamePasswordAuthenticationFilter.class);
     }

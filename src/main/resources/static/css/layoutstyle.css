@@ -1,7 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
        /*ปรับหน้าเว็บ*/
         html, body {
           margin: 0;
           padding: 0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
         }
         /*ใช้หลังจากที่ไม่ต้องการให้ float left หรือ right*/
         .clear {

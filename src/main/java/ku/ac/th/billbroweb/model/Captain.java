@@ -101,6 +101,10 @@ public class Captain{
         this.enable = enable;
     }
 
+    public void setC_id(int c_id) {
+        this.c_id = c_id;
+    }
+
     @Override
     public String toString() {
         return "Captain{" +

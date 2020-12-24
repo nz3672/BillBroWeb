@@ -1,7 +1,12 @@
 package ku.ac.th.billbroweb.controller;
 
+import ku.ac.th.billbroweb.model.Crewmate;
+import ku.ac.th.billbroweb.model.HistoryPay;
 import ku.ac.th.billbroweb.model.TaskParty;
+import ku.ac.th.billbroweb.service.CrewmateService;
+import ku.ac.th.billbroweb.service.HistoryPayService;
 import ku.ac.th.billbroweb.service.TaskPartyService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,7 +18,14 @@ import javax.servlet.http.HttpSession;
 @Controller
 @RequestMapping("/task-party")
 public class TaskPartyController {
+    @Autowired
     private TaskPartyService taskPartyService;
+
+    @Autowired
+    private CrewmateService crewmateService;
+
+    @Autowired
+    private HistoryPayService historyPayService;
 
     public TaskPartyController(TaskPartyService taskPartyService) {
         this.taskPartyService = taskPartyService;

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{fragments/main_layout}"
+      xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link th:rel="stylesheet" th:href="@{css/edituserstyle.css}">
+</head>
+
+<div class="wrapper bg-white mt-sm-5" layout:fragment="content">
+    <h4 class="pb-4 border-bottom">Account settings</h4>
+    <form th:object="${captain}" th:action="@{/edituser}" method="POST">
+        <div class="py-2">
+            <div class="row py-2">
+                <div class="col-md-6"> <label for="username">Username</label> <input disabled th:field="*{cUsername}" type="text" class="bg-light form-control"> </div>
+                <div class="col-md-6 pt-md-0 pt-3"> <label for="In-appName">In-app name</label> <input disabled th:field="*{c_name}" type="text" class="bg-light form-control"> </div>
+            </div>
+            <div class="row py-2">
+                <div class="col-md-6"> <label for="email">Email Address</label> <input disabled th:field="*{c_email}" type="email" class="bg-light form-control"> </div>
+            </div>
+
+            <div class="py-3 pb-4 border-bottom"> <a th:href="@{/home}" class="btn border button">Back</a> </div>
+        </div>
+    </form>
+
+</div>
+</html>

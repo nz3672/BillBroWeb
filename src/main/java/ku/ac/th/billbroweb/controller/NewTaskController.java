@@ -28,7 +28,6 @@ public class NewTaskController {
 
     @GetMapping
     public String getNewTask(Authentication authentication){
-        System.out.println(authentication.getName());
         return "NewTask";
     }
 

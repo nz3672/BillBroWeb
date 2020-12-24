@@ -2,11 +2,13 @@ package ku.ac.th.billbroweb.controller;
 
 
 import ku.ac.th.billbroweb.model.*;
+import ku.ac.th.billbroweb.service.CaptainService;
 import ku.ac.th.billbroweb.service.CrewmateService;
 import ku.ac.th.billbroweb.service.EmailService;
 import ku.ac.th.billbroweb.service.HistoryPayService;
 import ku.ac.th.billbroweb.service.TaskPartyService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,6 +30,9 @@ public class EditCrewmateController {
     private CrewmateService crewmateService;
 
     @Autowired
+    private CaptainService captainService;
+
+    @Autowired
     private HistoryPayService historyPayService;
 
     @Autowired
@@ -37,7 +42,7 @@ public class EditCrewmateController {
     private EmailService emailService;
 
     @GetMapping
-    public String getEditTask(Model model, @ModelAttribute CrewmateWrapper crewmateWrapper) {
+    public String getEditTask(Authentication authentication, Model model, @ModelAttribute CrewmateWrapper crewmateWrapper) {
         this.taskParty = (TaskParty) model.asMap().get("taskParty");
 
         List<Crewmate> crewmateList = crewmateService.getCrewmateOfTaskParty(taskParty.gettId());
@@ -50,6 +55,7 @@ public class EditCrewmateController {
         }
         model.addAttribute("perPrice", crewmateArrayList.get(0).getCrewmate().getCm_per_price());
         model.addAttribute("crewmateWrapper", new CrewmateWrapper(crewmateArrayList));
+        model.addAttribute("capName","Welcome ," + captainService.findCaptain(authentication.getName()).getC_name());
         return "EditTaskOfCrewmate";
     }
 
@@ -71,6 +77,7 @@ public class EditCrewmateController {
             crewmateService.editCrewmate(crewmate);
 
             historyPay.setCmId(crewmate.getCmId());
+            historyPay.setHp_dept(crewmate.getCm_per_price() - historyPay.getHp_payed());
 
             historyPayService.editHistoryPay(historyPay);
 
