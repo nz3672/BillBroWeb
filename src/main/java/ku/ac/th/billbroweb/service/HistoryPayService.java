@@ -49,7 +49,7 @@ public class HistoryPayService {
     }
 
     public void editHistoryPay(HistoryPay historyPay){
-        String url = "http://localhost:8091/api/crewmate/" + historyPay.getHpId();
+        String url = "http://localhost:8091/api/history-pay/" + historyPay.getHpId();
         restTemplate.put(url,historyPay);
     }
 
