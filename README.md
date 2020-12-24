@@ -7,3 +7,5 @@
 นางสาวศรัญญา ศิริภิรมย์ 6110406236
 
 สำหรับการรัน ให้ทำการ clone billbroapi และ billbroweb แล้วรันพร้อมกัน
+
+ใช้ Selenium ในการ test โดย username กับ password ที่ใช้ในการทดสอบคือ username: nz3672 password: 1234 ซึ่งอาจต้องบันทึกลงดาต้าเบสก่อน
