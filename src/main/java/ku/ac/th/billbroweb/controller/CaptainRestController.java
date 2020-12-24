@@ -29,9 +29,4 @@ public class CaptainRestController {
         return captainService.findCaptain(c_username);
     }
 
-//    @GetMapping("/{c_id}")
-//    public Captain getOne(@PathVariable int c_id){
-//        return captainService.findCaptain(c_id);
-//    }
-
 }
